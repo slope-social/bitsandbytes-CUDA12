@@ -33,7 +33,7 @@ setup(
         ]
     },
     install_requires=[
-        'tokenizers==0.15.2',
+        'tokenizers>=0.19,<0.20',
         'transformers==4.43.1',
         'torch==2.6.0.dev20241112+cu121; platform_system!="Windows"',
         'torchaudio==2.5.0.dev20241112+cu121; platform_system!="Windows"'

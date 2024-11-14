@@ -34,7 +34,12 @@ setup(
     url="https://github.com/TimDettmers/bitsandbytes",
     packages=find_packages(),
     package_data={"": libs},
-    install_requires=["torch", "numpy"],
+    install_requires=[
+        'tokenizers==0.15.2',
+        'transformers==4.43.1',
+        'torch==2.6.0.dev20241112+cu121',
+        'torchaudio==2.5.0.dev20241112+cu121'
+    ],
     extras_require={
         "benchmark": ["pandas", "matplotlib"],
         "test": ["scipy", "lion_pytorch"],

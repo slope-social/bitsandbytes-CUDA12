@@ -2,7 +2,6 @@
 __pycache__/
 *.py[cod]
 *$py.class
-*.so
 *.dll
 *.dylib
 *.o
@@ -154,3 +153,5 @@ dmypy.json
 dependencies
 cuda_build
 output/
+# Include precompiled libraries
+!precompiled/**/*.so

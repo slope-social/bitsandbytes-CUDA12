@@ -1,4 +1,15 @@
-# Requirements used for local development
+--index-url https://download.pytorch.org/whl/nightly/cu121
+--pre
+
+# PyTorch Dependencies
+torch==2.6.0.dev20241112+cu121
+torchaudio==2.5.0.dev20241112+cu121
+
+# Core Dependencies
+tokenizers==0.15.2
+transformers==4.43.1
+
+# Development Dependencies
 setuptools>=63
 pytest~=8.3.3
 einops~=0.8.0

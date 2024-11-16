@@ -6,6 +6,11 @@ channels:
   - conda-forge
 
 dependencies:
+  - pip
+  - pip:
+    - --index-url https://download.pytorch.org/whl/nightly/cu121
+    - --pre
+    - torch==2.6.0.dev20241112+cu121
   - python
   #- accelerate
   #- einops

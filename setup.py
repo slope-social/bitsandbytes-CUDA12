@@ -34,7 +34,25 @@ setup(
     url="https://github.com/slope-social/bitsandbytes-CUDA12",
     packages=find_packages(),
     package_data={"": libs},
-    install_requires=["torch", "numpy"],
+    install_requires=[
+            "torch>=2.6.0.dev20241112,<=2.6.1",
+            "numpy>=2.1.2,<3.0",
+            "nvidia-cublas-cu12==12.1.3.1",
+            "nvidia-cuda-cupti-cu12==12.1.105",
+            "nvidia-cuda-nvrtc-cu12==12.1.105",
+            "nvidia-cuda-runtime-cu12==12.1.105",
+            "nvidia-cudnn-cu12==9.1.0.70",
+            "nvidia-cufft-cu12==11.0.2.54",
+            "nvidia-curand-cu12==10.3.2.106",
+            "nvidia-cusolver-cu12==11.4.5.107",
+            "nvidia-cusparse-cu12==12.1.0.106",
+            "nvidia-nccl-cu12==2.21.5",
+            "nvidia-nvjitlink-cu12==12.1.105",
+            "nvidia-nvtx-cu12==12.1.105"
+    ],
+    dependency_links=[
+        "https://download.pytorch.org/whl/nightly/cu121"
+    ],
     extras_require={
         "benchmark": ["pandas", "matplotlib"],
         "test": ["scipy", "lion_pytorch"],

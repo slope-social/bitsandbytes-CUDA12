@@ -25,7 +25,7 @@ class BinaryDistribution(Distribution):
 
 setup(
     name="bitsandbytes",
-    version="1.0",
+    version="1.5",
     author="slope-social",
     author_email="hey@slope.social",
     description="k-bit optimizers and matrix multiplication routines.",

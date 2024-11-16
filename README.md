@@ -12,6 +12,29 @@ There are ongoing efforts to support further hardware backends, i.e. Intel CPU +
 
 **[https://huggingface.co/docs/bitsandbytes/main](https://huggingface.co/docs/bitsandbytes/main)**
 
+## CUDA 12.1 Support
+
+This fork includes precompiled binaries for CUDA 12.1. Tested and working with:
+- CUDA 12.1
+- PyTorch 2.6.0.dev20241112+cu121
+- NVIDIA Driver Version: 535.216.01
+- GPU: NVIDIA GeForce RTX 3070 Laptop GPU
+
+### Installation
+
+```bash
+pip install git+https://github.com/slope-social/bitsandbytes-CUDA12.git@cuda121-support
+
+```
+
+Environment variables required:
+
+export CUDA_HOME=/usr/local/cuda-12.1
+
+export LD_LIBRARY_PATH=/usr/local/cuda-12.1/lib64:$LD_LIBRARY_PATH
+
+export BNB_CUDA_VERSION=121
+
 ## `bitsandbytes` multi-backend _alpha_ release is out!
 
 🚀 Big news! After months of hard work and incredible community contributions, we're thrilled to announce the **bitsandbytes multi-backend _alpha_ release**! 💥

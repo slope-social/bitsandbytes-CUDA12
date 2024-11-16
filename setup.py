@@ -25,13 +25,13 @@ class BinaryDistribution(Distribution):
 
 setup(
     name="bitsandbytes",
-    version="0.44.2.dev",
-    author="Tim Dettmers",
-    author_email="dettmers@cs.washington.edu",
+    version="1.0",
+    author="slope-social",
+    author_email="hey@slope.social",
     description="k-bit optimizers and matrix multiplication routines.",
     license="MIT",
     keywords="gpu optimizers optimization 8-bit quantization compression",
-    url="https://github.com/TimDettmers/bitsandbytes",
+    url="https://github.com/slope-social/bitsandbytes-CUDA12",
     packages=find_packages(),
     package_data={"": libs},
     install_requires=["torch", "numpy"],

@@ -36,7 +36,7 @@ setup(
     package_data={"": libs},
     install_requires=[
             "torch>=2.6.0.dev20241112,<=2.6.1",
-            "numpy>=2.1.2,<3.0",
+            "numpy>=1.23.5,<2.1",
             "nvidia-cublas-cu12==12.1.3.1",
             "nvidia-cuda-cupti-cu12==12.1.105",
             "nvidia-cuda-nvrtc-cu12==12.1.105",

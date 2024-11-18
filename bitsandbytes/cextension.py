@@ -73,10 +73,14 @@ class CudaBNBNativeLibrary(BNBNativeLibrary):
 
     def __init__(self, lib: ct.CDLL):
         super().__init__(lib)
+        # Add CUDA setup attributes
+        self.COMPILED_WITH_CUDA = True
+        self.cuda_setup = True
+        
+        # Setup function return types
         lib.get_context.restype = ct.c_void_p
         lib.get_cusparse.restype = ct.c_void_p
         lib.cget_managed_ptr.restype = ct.c_void_p
-
 
 def get_native_library() -> BNBNativeLibrary:
     binary_path = PACKAGE_DIR / f"libbitsandbytes_cpu{DYNAMIC_LIBRARY_SUFFIX}"
@@ -85,18 +89,19 @@ def get_native_library() -> BNBNativeLibrary:
         cuda_binary_path = get_cuda_bnb_library_path(cuda_specs)
         if cuda_binary_path.exists():
             binary_path = cuda_binary_path
+            logger.debug(f"Loading bitsandbytes CUDA binary from: {binary_path}")
+            try:
+                dll = ct.cdll.LoadLibrary(str(binary_path))
+                if hasattr(dll, "get_context"):  # CUDA-built library check
+                    return CudaBNBNativeLibrary(dll)
+            except Exception as e:
+                logger.error(f"Failed to load CUDA library: {e}")
+                binary_path = PACKAGE_DIR / f"libbitsandbytes_cpu{DYNAMIC_LIBRARY_SUFFIX}"
         else:
-            logger.warning("Could not find the bitsandbytes CUDA binary at %r", cuda_binary_path)
-    logger.debug(f"Loading bitsandbytes native library from: {binary_path}")
+            logger.warning(f"Could not find the bitsandbytes CUDA binary at {cuda_binary_path}")
+
+    logger.debug(f"Loading bitsandbytes CPU binary from: {binary_path}")
     dll = ct.cdll.LoadLibrary(str(binary_path))
-
-    if hasattr(dll, "get_context"):  # only a CUDA-built library exposes this
-        return CudaBNBNativeLibrary(dll)
-
-    logger.warning(
-        "The installed version of bitsandbytes was compiled without GPU support. "
-        "8-bit optimizers, 8-bit multiplication, and GPU quantization are unavailable.",
-    )
     return BNBNativeLibrary(dll)
 
 

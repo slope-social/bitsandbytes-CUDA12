@@ -1,8 +1,3 @@
-# Copyright (c) Facebook, Inc. and its affiliates.
-#
-# This source code is licensed under the MIT license found in the
-# LICENSE file in the root directory of this source tree.
-
 from . import research, utils
 from .autograd._functions import (
     MatmulLtState,
@@ -14,6 +9,8 @@ from .autograd._functions import (
 )
 from .nn import modules
 from .optim import adam
+from .cextension import lib  # Add this import
+from .cuda_specs import get_cuda_specs  # Add this import
 
 __pdoc__ = {
     "libbitsandbytes": False,
@@ -22,3 +19,7 @@ __pdoc__ = {
 }
 
 __version__ = "1.5"
+
+# Add these exports
+COMPILED_WITH_CUDA = lib is not None and lib.compiled_with_cuda
+cuda_setup = get_cuda_specs()
